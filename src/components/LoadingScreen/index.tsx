@@ -1,5 +1,7 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useRef } from 'react'
 import { useLottie } from 'lottie-react'
+import gsap from 'gsap'
+import { useLoadingContext } from 'src/context'
 import loadingAnimation from 'src/assets/animation/loading.json'
 import styles from './loading.module.scss'
 
@@ -8,10 +10,32 @@ interface LoadingScreenProps {
 }
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const logoRef = useRef<HTMLDivElement>(null)
+  const { setIsLoadingComplete } = useLoadingContext()
+
   const handleAnimationComplete = useCallback(() => {
     sessionStorage.setItem('isLoading', 'true')
-    onComplete()
-  }, [onComplete])
+
+    if (!containerRef.current) return
+    const tl = gsap.timeline()
+
+    tl.to(logoRef.current, {
+      delay: 1,
+      opacity: 0,
+      duration: 0.2,
+      ease: 'power2.out'
+    }).to(containerRef.current, {
+      delay: 1,
+      opacity: 0,
+      duration: 0.2,
+      ease: 'power2.out',
+      onComplete: () => {
+        setIsLoadingComplete(true)
+        onComplete()
+      }
+    })
+  }, [onComplete, setIsLoadingComplete])
 
   const options = {
     animationData: loadingAnimation,
@@ -26,7 +50,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
     play()
   }, [play])
 
-  return <div className={styles.container}>{View}</div>
+  return (
+    <div ref={containerRef} className={styles.container}>
+      <div ref={logoRef} className={styles.logo}>
+        {View}
+      </div>
+    </div>
+  )
 }
 
 export default LoadingScreen

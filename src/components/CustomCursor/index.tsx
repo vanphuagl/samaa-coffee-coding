@@ -44,7 +44,7 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ isLeftHalf, position, isHid
         left: 0,
         top: 0,
         pointerEvents: 'none',
-        zIndex: 9999,
+        zIndex: 999,
         transform: 'translate(-50%, -50%)'
       }}
     >
