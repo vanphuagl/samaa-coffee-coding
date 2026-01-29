@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { useIsMobile } from 'src/hooks'
 import { Header } from 'src/components'
 import styles from './intro.module.scss'
 
 const Intro: React.FC = () => {
+  const isMobile = useIsMobile()
   const circleRef = useRef<SVGSVGElement>(null)
 
   // ===== rotate circle / complete one lap to 5 seconds ====
@@ -19,7 +21,7 @@ const Intro: React.FC = () => {
 
   return (
     <section className={styles.container}>
-      <Header logo={false} sidebar={true} color='var(--white-cl)' />
+      {!isMobile && <Header logo={false} sidebar={true} color='var(--white-cl)' />}
       <div className={`${styles.desc} fs`}>
         <p>
           A cup of coffee shapes a beautiful future. Our vision of a beautiful future means balance - not perfection.

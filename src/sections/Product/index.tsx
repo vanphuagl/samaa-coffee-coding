@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { Header } from 'src/components'
+import { useIsMobile } from 'src/hooks'
 import styles from './product.module.scss'
 
 /* ---------------------------------- image --------------------------------- */
@@ -23,6 +24,7 @@ const products = [
 ]
 
 const Product: React.FC = () => {
+  const isMobile = useIsMobile()
   const containerRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<number | null>(null)
   const positionRef = useRef(0)
@@ -143,7 +145,7 @@ const Product: React.FC = () => {
 
   return (
     <section className={styles.container}>
-      <Header logo={true} sidebar={false} />
+      {!isMobile && <Header logo={true} sidebar={false} />}
 
       <div className={styles.carousel}>
         <div className={styles.carouselContainer}>

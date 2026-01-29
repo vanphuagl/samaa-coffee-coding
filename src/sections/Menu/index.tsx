@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
-import { Header } from 'src/components'
 import gsap from 'gsap'
+import { useIsMobile } from 'src/hooks'
+import { Header } from 'src/components'
 import styles from './menu.module.scss'
 
 /* ---------------------------------- image --------------------------------- */
@@ -35,6 +36,7 @@ const ANIMATION_DELAY = 100 // milliseconds before animation starts
 const CLONE_COUNT = 23 // number of clones for seamless loop
 
 const Menu: React.FC = () => {
+  const isMobile = useIsMobile()
   const marqueeRef = useRef<HTMLDivElement>(null)
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
 
@@ -131,7 +133,7 @@ const Menu: React.FC = () => {
 
   return (
     <section className={styles.container}>
-      <Header logo={false} sidebar={true} />
+      {!isMobile && <Header logo={false} sidebar={true} />}
 
       <div className={styles.imgList}>
         {IMAGE_STEPS.map(({ key, images }) => (
