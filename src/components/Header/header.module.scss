@@ -1,0 +1,31 @@
+@use '@/styles/imports/mixins' as *;
+
+.container {
+  .sidebar {
+    position: absolute;
+    top: 43px;
+    right: 40px;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 100px;
+
+    p {
+      font-family: var(--m-plus-fonts);
+      font-size: 1.4rem;
+      letter-spacing: 3.2px;
+      font-weight: 500;
+      writing-mode: vertical-lr;
+    }
+  }
+
+  .logo {
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+}

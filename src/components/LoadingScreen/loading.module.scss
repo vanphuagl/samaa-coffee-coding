@@ -1,0 +1,19 @@
+@use '@/styles/imports/mixins' as *;
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--main-bg-cl);
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    overflow: visible;
+  }
+}

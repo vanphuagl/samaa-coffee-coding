@@ -1,0 +1,20 @@
+@use '@/styles/imports/mixins' as *;
+
+.container {
+  background: var(--orange-cl);
+  color: var(--white-cl);
+  padding: 40px;
+
+  .desc {
+    width: 59.722vw;
+    line-height: 1.62;
+    letter-spacing: 0.62px;
+  }
+
+  .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
