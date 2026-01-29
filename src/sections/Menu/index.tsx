@@ -14,6 +14,21 @@ import img1Step3 from 'src/assets/images/menu/step3-1.webp'
 import img2Step3 from 'src/assets/images/menu/step3-2.webp'
 import img3Step3 from 'src/assets/images/menu/step3-3.webp'
 
+const IMAGE_STEPS = [
+  {
+    key: 'step1',
+    images: [img1Step1, img2Step1, img3Step1]
+  },
+  {
+    key: 'step2',
+    images: [img1Step2, img2Step2, img3Step2]
+  },
+  {
+    key: 'step3',
+    images: [img1Step3, img2Step3, img3Step3]
+  }
+]
+
 // configuration constants
 const SCROLL_SPEED = 100 // adjust speed here
 const ANIMATION_DELAY = 100 // milliseconds before animation starts
@@ -119,66 +134,18 @@ const Menu: React.FC = () => {
       <Header logo={false} sidebar={true} />
 
       <div className={styles.imgList}>
-        <div className={styles.step1}>
-          <div>
-            <picture>
-              <source media='(max-width: 1024px)' srcSet={img1Step1} />
-              <img src={img1Step1} alt='SAMAA_' />
-            </picture>
+        {IMAGE_STEPS.map(({ key, images }) => (
+          <div key={key} className={styles[key]}>
+            {images.map((img, index) => (
+              <div key={index}>
+                <picture>
+                  <source media='(max-width: 1024px)' srcSet={img} />
+                  <img src={img} alt='SAMAA_' />
+                </picture>
+              </div>
+            ))}
           </div>
-          <div>
-            <picture>
-              <source media='(max-width: 1024px)' srcSet={img2Step1} />
-              <img src={img2Step1} alt='SAMAA_' />
-            </picture>
-          </div>
-          <div>
-            <picture>
-              <source media='(max-width: 1024px)' srcSet={img3Step1} />
-              <img src={img3Step1} alt='SAMAA_' />
-            </picture>
-          </div>
-        </div>
-        <div className={styles.step2}>
-          <div>
-            <picture>
-              <source media='(max-width: 1024px)' srcSet={img1Step2} />
-              <img src={img1Step2} alt='SAMAA_' />
-            </picture>
-          </div>
-          <div>
-            <picture>
-              <source media='(max-width: 1024px)' srcSet={img2Step2} />
-              <img src={img2Step2} alt='SAMAA_' />
-            </picture>
-          </div>
-          <div>
-            <picture>
-              <source media='(max-width: 1024px)' srcSet={img3Step2} />
-              <img src={img3Step2} alt='SAMAA_' />
-            </picture>
-          </div>
-        </div>
-        <div className={styles.step3}>
-          <div>
-            <picture>
-              <source media='(max-width: 1024px)' srcSet={img1Step3} />
-              <img src={img1Step3} alt='SAMAA_' />
-            </picture>
-          </div>
-          <div>
-            <picture>
-              <source media='(max-width: 1024px)' srcSet={img2Step3} />
-              <img src={img2Step3} alt='SAMAA_' />
-            </picture>
-          </div>
-          <div>
-            <picture>
-              <source media='(max-width: 1024px)' srcSet={img3Step3} />
-              <img src={img3Step3} alt='SAMAA_' />
-            </picture>
-          </div>
-        </div>
+        ))}
       </div>
 
       <div className={styles.center}>

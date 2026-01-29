@@ -11,6 +11,32 @@
   }
 }
 
+@mixin image-position(
+  $width-px,
+  $width-vw,
+  $aspect-h,
+  $aspect-w,
+  $z-index,
+  $top: auto,
+  $right: auto,
+  $bottom: auto,
+  $left: auto,
+  $transform: none
+) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  z-index: $z-index;
+  width: max(#{$width-px}px, #{$width-vw}vw);
+  transform: $transform;
+
+  picture {
+    padding-bottom: calc($aspect-h / $aspect-w * 100%);
+  }
+}
+
 @mixin overtext($lines) {
   display: -webkit-inline-box;
   -webkit-line-clamp: $lines;

@@ -22,123 +22,44 @@
     }
 
     .step1 {
-      div {
-        &:nth-of-type(1) {
-          position: absolute;
-          bottom: 105px;
-          left: 40px;
-          z-index: 1;
-          width: max(170px, 11.806vw);
+      div:nth-of-type(1) {
+        @include image-position(170, 11.806, 228, 170, 1, $bottom: 105px, $left: 40px);
+      }
 
-          picture {
-            padding-bottom: calc(228 / 170 * 100%);
-          }
-        }
+      div:nth-of-type(2) {
+        @include image-position(361.26, 25.088, 541.95, 361.26, 1, $top: 0, $left: 29.678%);
+      }
 
-        &:nth-of-type(2) {
-          position: absolute;
-          top: 0;
-          left: 29.678%;
-          z-index: 1;
-          width: max(361.26px, 25.088vw);
-
-          picture {
-            padding-bottom: calc(541.95 / 361.26 * 100%);
-          }
-        }
-
-        &:nth-of-type(3) {
-          position: absolute;
-          bottom: 40px;
-          right: 40px;
-          z-index: 1;
-          width: max(248px, 17.222vw);
-
-          picture {
-            padding-bottom: calc(328 / 248 * 100%);
-          }
-        }
+      div:nth-of-type(3) {
+        @include image-position(248, 17.222, 328, 248, 1, $bottom: 40px, $right: 40px);
       }
     }
 
     .step2 {
-      div {
-        &:nth-of-type(1) {
-          position: absolute;
-          top: 164px;
-          left: 184px;
-          z-index: 2;
-          width: max(295px, 20.486vw);
+      div:nth-of-type(1) {
+        @include image-position(295, 20.486, 197, 295, 2, $top: 164px, $left: 184px);
+      }
 
-          picture {
-            padding-bottom: calc(197 / 295 * 100%);
-          }
-        }
+      div:nth-of-type(2) {
+        @include image-position(154, 10.694, 209, 154, 2, $bottom: 0, $left: 52.708%);
+      }
 
-        &:nth-of-type(2) {
-          position: absolute;
-          bottom: 0;
-          left: 52.708%;
-          z-index: 2;
-          width: max(154px, 10.694vw);
-
-          picture {
-            padding-bottom: calc(209 / 154 * 100%);
-          }
-        }
-
-        &:nth-of-type(3) {
-          position: absolute;
-          top: 40px;
-          right: 156px;
-          z-index: 2;
-          width: max(186px, 12.917vw);
-
-          picture {
-            padding-bottom: calc(241 / 186 * 100%);
-          }
-        }
+      div:nth-of-type(3) {
+        @include image-position(186, 12.917, 241, 186, 2, $top: 40px, $right: 156px);
       }
     }
 
     .step3 {
-      div {
-        &:nth-of-type(1) {
-          position: absolute;
-          top: 40px;
-          left: 80px;
-          z-index: 3;
-          width: max(168px, 11.667vw);
+      div:nth-of-type(1) {
+        @include image-position(168, 11.667, 221, 168, 3, $top: 40px, $left: 80px);
+      }
 
-          picture {
-            padding-bottom: calc(221 / 168 * 100%);
-          }
-        }
+      div:nth-of-type(2) {
+        @include image-position(286, 19.861, 381, 286, 3, $bottom: 0, $left: 20.486%);
+      }
 
-        &:nth-of-type(2) {
-          position: absolute;
-          bottom: 0;
-          left: 20.486%;
-          z-index: 3;
-          width: max(286px, 19.861vw);
-
-          picture {
-            padding-bottom: calc(381 / 286 * 100%);
-          }
-        }
-
-        &:nth-of-type(3) {
-          position: absolute;
-          top: 50%;
-          right: 15.833%;
-          z-index: 3;
-          width: max(326px, 22.639vw);
-          transform: translateY(-50%);
-
-          picture {
-            padding-bottom: calc(431 / 326 * 100%);
-          }
-        }
+      div:nth-of-type(3) {
+        @include image-position(326, 22.639, 431, 326, 3, $top: 50%, $right: 15.833%, $transform: translateY(-50%));
       }
     }
   }
