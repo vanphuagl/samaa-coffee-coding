@@ -19,7 +19,10 @@
   }
 
   @include maxW {
-    padding: 25px 22px;
+    padding: 25px 22px 0;
+
+    display: flex;
+    flex-direction: column;
 
     .desc {
       width: 100%;
@@ -29,9 +32,17 @@
     }
 
     .circle {
-      top: auto;
-      bottom: 77px;
-      transform: translateX(-50%);
+      position: unset;
+      transform: none;
+
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      // top: auto;
+      // bottom: 77px;
+      // transform: translateX(-50%);
 
       svg {
         display: block;
