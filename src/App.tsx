@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useIsMobile } from 'src/hooks'
 import { LoadingScreen } from 'src/components'
 import { AppProvider } from 'src/context/AppContext'
@@ -11,9 +11,21 @@ const App: React.FC = () => {
     return hasShownLoading !== 'true'
   })
 
+  // ===== handle loading =====
   const handleLoadingComplete = () => {
     setShowLoading(false)
   }
+
+  // ===== handle app-height =====
+  useEffect(() => {
+    const appHeight = () => {
+      const doc = document.documentElement
+      doc.style.setProperty('--app-height', `${document.documentElement.clientHeight}px`)
+    }
+    appHeight()
+    window.addEventListener('resize', appHeight)
+    return () => window.removeEventListener('resize', appHeight)
+  }, [])
 
   return (
     <AppProvider>
