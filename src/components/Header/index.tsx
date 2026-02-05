@@ -10,7 +10,7 @@ const Header: React.FC<HeaderProps> = ({ logo = false, sidebar = true, color }) 
   return (
     <div className={styles.container}>
       {logo && (
-        <div className={styles.logo}>
+        <div className={`${styles.logo} pc-only`}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             xmlnsXlink='http://www.w3.org/1999/xlink'

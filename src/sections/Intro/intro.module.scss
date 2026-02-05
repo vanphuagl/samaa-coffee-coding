@@ -17,4 +17,27 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  @include maxW {
+    padding: 25px 22px;
+
+    .desc {
+      width: 100%;
+      padding-right: 33px;
+      line-height: 1.58;
+      letter-spacing: 0.5px;
+    }
+
+    .circle {
+      top: auto;
+      bottom: 77px;
+      transform: translateX(-50%);
+
+      svg {
+        display: block;
+        width: 71.014vw;
+        height: auto;
+      }
+    }
+  }
 }

@@ -23,6 +23,8 @@ const products = [
   { id: 12, image: product3Img, name: 'Classic Bottle 22oz' }
 ]
 
+const SCROLL_SPEED = 35 // seconds to complete one full cycle (lower = faster)
+
 const Product: React.FC = () => {
   const isMobile = useIsMobile()
   const containerRef = useRef<HTMLDivElement>(null)
@@ -50,7 +52,9 @@ const Product: React.FC = () => {
       if (!firstItem) return
 
       const computedStyle = window.getComputedStyle(container)
-      const gap = parseFloat(computedStyle.gap) || 40
+      // const gap = parseFloat(computedStyle.gap) || 40
+      const gapValue = parseFloat(computedStyle.gap)
+      const gap = isNaN(gapValue) ? 40 : gapValue
 
       const itemWidth = firstItem.offsetWidth
       const itemWithGap = itemWidth + gap
@@ -64,7 +68,7 @@ const Product: React.FC = () => {
       const startPosition = centerOffset - offsetToMiddle
 
       // calculate speed: pixels per second (not per frame)
-      const pixelsPerSecond = singleSetWidth / 35
+      const pixelsPerSecond = singleSetWidth / SCROLL_SPEED
 
       configRef.current = {
         itemWidth,
@@ -163,7 +167,7 @@ const Product: React.FC = () => {
       </div>
 
       <div className={styles.bottom}>
-        <a className='u-hovertxt' href='https://store.samaa.world' target='_blank' rel='noopener noreferrer'>
+        <a className='fs u-hovertxt' href='https://store.samaa.world' target='_blank' rel='noopener noreferrer'>
           Available Here
         </a>
       </div>

@@ -21,4 +21,12 @@
     transform: translateX(-50%);
     z-index: 1;
   }
+
+  @include maxW {
+    background-image: var(--bg-mobile);
+
+    .bottom {
+      bottom: 18px;
+    }
+  }
 }

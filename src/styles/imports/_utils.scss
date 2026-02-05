@@ -5,19 +5,25 @@
   font-weight: 500;
   line-height: 1.65;
   letter-spacing: 0.9px;
+
+  @include maxW {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    letter-spacing: 0.6px;
+  }
 }
 
 .u-hovertxt {
   display: inline;
-  transition:
-    background 0.2s ease-in-out,
-    color 0.2s ease-in-out;
+  padding: 1px 1px 0 2px;
+  margin: -1px -1px 0 -2px;
+  transition: 0.2s ease-in-out;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 
   &:hover {
     background: var(--orange-cl);
     color: var(--white-cl);
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
   }
 }
 

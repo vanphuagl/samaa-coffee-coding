@@ -8,7 +8,7 @@ const MobileLayout: React.FC = () => {
       <Header logo={false} sidebar={true} />
       <MobileInfiniteScroll
         className={styles.container}
-        autoStartDelay={4000}
+        autoStartDelay={2000}
         speed={0.5}
         sensitivity={1.1}
         momentumMultiplier={0.03}

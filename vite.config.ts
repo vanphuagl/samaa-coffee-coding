@@ -5,16 +5,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react({
-      babel: {
-        plugins: [
-          // Optional: Add babel plugins here if needed
-        ]
-      }
-    }),
-    tsconfigPaths()
-  ],
+  plugins: [react(), tsconfigPaths()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')

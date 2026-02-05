@@ -13,7 +13,7 @@ const Intro: React.FC = () => {
     if (!circleRef.current) return
     gsap.to(circleRef.current, {
       rotation: 360,
-      duration: 5,
+      duration: 8,
       ease: 'none',
       repeat: -1
     })

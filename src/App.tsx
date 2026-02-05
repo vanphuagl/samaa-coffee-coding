@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useIsMobile } from 'src/hooks'
 import { LoadingScreen } from 'src/components'
-import { LoadingProvider } from 'src/context'
+import { AppProvider } from 'src/context/AppContext'
 import { DesktopLayout, MobileLayout } from 'src/layouts'
 
 const App: React.FC = () => {
@@ -16,12 +16,12 @@ const App: React.FC = () => {
   }
 
   return (
-    <LoadingProvider>
+    <AppProvider>
       <>
         {showLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
         <main>{isMobile ? <MobileLayout /> : <DesktopLayout />}</main>
       </>
-    </LoadingProvider>
+    </AppProvider>
   )
 }
 

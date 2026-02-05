@@ -1,4 +1,5 @@
 import bgContactDesktop from 'src/assets/images/contact/bg.webp'
+import bgContactMobile from 'src/assets/images/contact/bg-sp.webp'
 import styles from './contact.module.scss'
 
 const Contact: React.FC = () => {
@@ -7,7 +8,8 @@ const Contact: React.FC = () => {
       className={styles.container}
       style={
         {
-          '--bg-desktop': `url(${bgContactDesktop})`
+          '--bg-desktop': `url(${bgContactDesktop})`,
+          '--bg-mobile': `url(${bgContactMobile})`
         } as React.CSSProperties
       }
     >

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
 import { useIsMobile } from 'src/hooks'
-import { Header } from 'src/components'
+import { Header, VerticalMarquee } from 'src/components'
 import styles from './menu.module.scss'
+import gsap from 'gsap'
 
 /* ---------------------------------- image --------------------------------- */
 import img1Step1 from 'src/assets/images/menu/step1-1.webp'
@@ -30,104 +30,35 @@ const IMAGE_STEPS = [
   }
 ]
 
-// configuration constants
-const SCROLL_SPEED = 100 // adjust speed here
-const ANIMATION_DELAY = 100 // milliseconds before animation starts
-const CLONE_COUNT = 23 // number of clones for seamless loop
+const MARQUEE_ITEMS = ['COFFEE', 'BAGEL', 'NATURAL WINE', 'AND MORE']
 
 const Menu: React.FC = () => {
   const isMobile = useIsMobile()
-  const marqueeRef = useRef<HTMLDivElement>(null)
-  const timelineRef = useRef<gsap.core.Timeline | null>(null)
+  const step1Ref = useRef<HTMLDivElement>(null)
+  const step2Ref = useRef<HTMLDivElement>(null)
+  const step3Ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const marqueeElement = marqueeRef.current
-    if (!marqueeElement) return
+    const step1 = step1Ref.current
+    const step2 = step2Ref.current
+    const step3 = step3Ref.current
 
-    const firstContent = marqueeElement.querySelector(`.${styles.marqueeContent}`) as HTMLElement
-    if (!firstContent) return
+    if (!step1 || !step2 || !step3) return
 
-    // ===== init animation  =====
-    const initAnimation = () => {
-      if (timelineRef.current) {
-        timelineRef.current.kill()
-      }
+    const timeline = gsap.timeline({ repeat: -1 })
+    const timeDuration = 0
+    gsap.set([step1, step2, step3], { autoAlpha: 0 })
 
-      // remove all clones, keep only the first element
-      const clones = marqueeElement.querySelectorAll(`.${styles.marqueeContent}:not(:first-child)`)
-      clones.forEach((clone) => clone.remove())
-      // create clones for seamless infinite scroll
-      Array.from({ length: CLONE_COUNT }, () => {
-        marqueeElement.appendChild(firstContent.cloneNode(true))
-      })
-
-      // start vertical loop animation
-      const elements = Array.from(marqueeElement.children) as HTMLElement[]
-      timelineRef.current = createVerticalLoop(elements, SCROLL_SPEED)
-    }
-
-    // ===== create infine vertical scrolling =====
-    const createVerticalLoop = (elements: HTMLElement[], speed: number): gsap.core.Timeline => {
-      const first = elements[0]!
-      const second = elements[1]!
-      const last = elements[elements.length - 1]!
-
-      // calculate animation boundaries
-      const firstBounds = first.getBoundingClientRect()
-      const lastBounds = last.getBoundingClientRect()
-      const secondBounds = second.getBoundingClientRect()
-
-      const top = firstBounds.top - firstBounds.height - Math.abs(secondBounds.top - firstBounds.bottom)
-      const bottom = lastBounds.top
-      const distance = bottom - top
-      const duration = Math.abs(distance / speed)
-
-      // create infinite loop timeline
-      const timeline = gsap.timeline({ repeat: -1 })
-      const incrementOperator = speed < 0 ? '-=' : '+='
-      const decrementOperator = speed < 0 ? '+=' : '-='
-
-      elements.forEach((element) => {
-        const bounds = element.getBoundingClientRect()
-        let ratio = Math.abs((bottom - bounds.top) / distance)
-
-        if (speed < 0) {
-          ratio = 1 - ratio
-        }
-
-        // main animation: move element from current position
-        timeline.to(
-          element,
-          {
-            y: incrementOperator + distance * ratio,
-            duration: duration * ratio,
-            ease: 'none'
-          },
-          0
-        )
-
-        // loop animation: reset position and continue seamlessly
-        timeline.fromTo(
-          element,
-          { y: decrementOperator + distance },
-          {
-            y: incrementOperator + (1 - ratio) * distance,
-            ease: 'none',
-            duration: (1 - ratio) * duration,
-            immediateRender: false
-          },
-          duration * ratio
-        )
-      })
-
-      return timeline
-    }
-    // delay initialization to ensure DOM is fully ready
-    const initTimer = setTimeout(initAnimation, ANIMATION_DELAY)
+    timeline
+      .to(step1, { autoAlpha: 1, duration: timeDuration, delay: 0.5 })
+      .to(step2, { autoAlpha: 1, duration: timeDuration, delay: 0.5 })
+      .to(step3, { autoAlpha: 1, duration: timeDuration, delay: 0.5 })
+      .to(step3, { autoAlpha: 0, duration: timeDuration, delay: 0.5 })
+      .to(step2, { autoAlpha: 0, duration: timeDuration, delay: 0.5 })
+      .to(step1, { autoAlpha: 0, duration: timeDuration, delay: 0.5 })
 
     return () => {
-      clearTimeout(initTimer)
-      timelineRef.current?.kill()
+      timeline.kill()
     }
   }, [])
 
@@ -136,8 +67,12 @@ const Menu: React.FC = () => {
       {!isMobile && <Header logo={false} sidebar={true} />}
 
       <div className={styles.imgList}>
-        {IMAGE_STEPS.map(({ key, images }) => (
-          <div key={key} className={styles[key]}>
+        {IMAGE_STEPS.map(({ key, images }, stepIndex) => (
+          <div
+            key={key}
+            className={styles[key]}
+            ref={stepIndex === 0 ? step1Ref : stepIndex === 1 ? step2Ref : step3Ref}
+          >
             {images.map((img, index) => (
               <div key={index}>
                 <picture>
@@ -151,23 +86,14 @@ const Menu: React.FC = () => {
       </div>
 
       <div className={styles.center}>
-        <div className={styles.marqueeWrapper}>
-          <div className={styles.marquee} ref={marqueeRef}>
-            <div className={styles.marqueeContent}>
-              <p>COFFEE</p>
-              <p>BAGEL</p>
-              <p>NATURAL WINE</p>
-              <p>AND MORE</p>
-            </div>
-          </div>
-        </div>
+        <VerticalMarquee items={MARQUEE_ITEMS} speed={100} cloneCount={23} />
       </div>
 
-      <div className={styles.bottom}>
+      {/* <div className={styles.bottom}>
         <p className='fs u-hovertxt' data-hover='disabled'>
           Menu List +
         </p>
-      </div>
+      </div> */}
     </section>
   )
 }

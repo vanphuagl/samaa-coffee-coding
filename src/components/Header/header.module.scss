@@ -22,6 +22,16 @@
 
     @include maxW {
       position: fixed;
+      top: 24px;
+      right: 22px;
+
+      gap: 48px;
+
+      p {
+        font-size: 1.1rem;
+        line-height: 2;
+        letter-spacing: 2.5px;
+      }
     }
   }
 
