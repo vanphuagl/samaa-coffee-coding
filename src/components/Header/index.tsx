@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useIsMobile } from 'src/hooks'
 import styles from './header.module.scss'
 
 interface HeaderProps {
@@ -8,14 +9,14 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ logo = false, sidebar = true, color }) => {
+  const isMobile = useIsMobile()
   const sidebarRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!sidebar || !sidebarRef.current) return
+    if (!isMobile || !sidebar || !sidebarRef.current) return
     const introSections = document.querySelectorAll('[data-intro]')
-    if (introSections.length === 0) return
-
     const pTags = sidebarRef.current.querySelectorAll('p')
+
     const checkIntersection = () => {
       pTags.forEach((pTag) => {
         const pRect = pTag.getBoundingClientRect()
@@ -42,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ logo = false, sidebar = true, color }) 
     return () => {
       cancelAnimationFrame(animationFrameId)
     }
-  }, [sidebar])
+  }, [isMobile, sidebar])
 
   return (
     <div className={styles.container}>
