@@ -4,23 +4,36 @@ import { useIsMobile } from 'src/hooks'
 import styles from './product.module.scss'
 
 /* ---------------------------------- image --------------------------------- */
-import product1Img from 'src/assets/images/product/product-1.webp'
-import product2Img from 'src/assets/images/product/product-2.webp'
-import product3Img from 'src/assets/images/product/product-3.webp'
+import product1Img from 'src/assets/images/product/beans_newhorizon.webp'
+import product2Img from 'src/assets/images/product/beans_singleorigin.webp'
+import product3Img from 'src/assets/images/product/20oz_front.webp'
+import product4Img from 'src/assets/images/product/kidsbottle_front.webp'
+import product5Img from 'src/assets/images/product/tumblr_front.webp'
+import product6Img from 'src/assets/images/product/cup.webp'
+import product7Img from 'src/assets/images/product/cap_front.webp'
+import product8Img from 'src/assets/images/product/bandana.webp'
+import product9Img from 'src/assets/images/product/book.webp'
 
 const products = [
-  { id: 1, image: product1Img, name: 'Wide Mouth Bottle 20oz' },
-  { id: 2, image: product2Img, name: 'Sport Bottle 24oz' },
-  { id: 3, image: product3Img, name: 'Travel Mug 16oz' },
-  { id: 4, image: product1Img, name: 'Water Bottle 32oz' },
-  { id: 5, image: product2Img, name: 'Coffee Cup 12oz' },
-  { id: 6, image: product3Img, name: 'Insulated Bottle 25oz' },
-  { id: 7, image: product1Img, name: 'Wide Mouth Bottle 20oz' },
-  { id: 8, image: product2Img, name: 'Tumbler 20oz' },
-  { id: 9, image: product3Img, name: 'Sports Flask 18oz' },
-  { id: 10, image: product1Img, name: 'Hydro Bottle 30oz' },
-  { id: 11, image: product2Img, name: 'Thermal Mug 14oz' },
-  { id: 12, image: product3Img, name: 'Classic Bottle 22oz' }
+  {
+    id: 1,
+    image: product1Img,
+    name: 'Coffee Beans\nOriginal Blend',
+    href: 'https://store.samaa.world/items/134461225'
+  },
+  {
+    id: 2,
+    image: product2Img,
+    name: 'Coffee Beans\nSingle Origin',
+    href: 'https://store.samaa.world/items/134461258'
+  },
+  { id: 3, image: product3Img, name: '20oz Wide Mouth Bottle', href: 'https://store.samaa.world/items/127695141' },
+  { id: 4, image: product4Img, name: '12oz Kids Bottle', href: 'https://store.samaa.world/items/127695186' },
+  { id: 5, image: product5Img, name: '12oz Tumbler', href: 'https://store.samaa.world/items/127695109' },
+  { id: 6, image: product6Img, name: 'One Kiln Cup', href: 'https://store.samaa.world/items/134461290' },
+  { id: 7, image: product7Img, name: 'Logo Cap', href: 'https://store.samaa.world/items/134461325' },
+  { id: 8, image: product8Img, name: 'Bandana', href: 'https://store.samaa.world/items/134461410' },
+  { id: 9, image: product9Img, name: 'Brand Book', href: 'https://store.samaa.world/items/134461445' }
 ]
 
 const SCROLL_SPEED = 35 // seconds to complete one full cycle (lower = faster)
@@ -155,12 +168,19 @@ const Product: React.FC = () => {
         <div className={styles.carouselContainer}>
           <div className={styles.carouselWrapper} ref={containerRef}>
             {duplicatedProducts.map((product, index) => (
-              <div key={`${product.id}-${index}`} className={styles.carouselSlide} data-hover='disabled'>
+              <a
+                href={product.href}
+                key={`${product.id}-${index}`}
+                className={styles.carouselSlide}
+                data-hover='disabled'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <picture>
                   <img src={product.image} alt={product.name} />
                 </picture>
                 <h2 className='fs'>{product.name}</h2>
-              </div>
+              </a>
             ))}
           </div>
         </div>

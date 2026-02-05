@@ -1,7 +1,7 @@
 import { Header } from 'src/components'
 import { useIsMobile } from 'src/hooks'
-import bgStoryDesktop from 'src/assets/images/story/bg.webp'
-import bgStoryMobile from 'src/assets/images/story/bg-sp.webp'
+import bgStoryDesktop from 'src/assets/images/story/slide04_bg.webp'
+import bgStoryMobile from 'src/assets/images/story/slide04_bg_sp.webp'
 import styles from './story.module.scss'
 
 const Story: React.FC = () => {
@@ -19,7 +19,12 @@ const Story: React.FC = () => {
     >
       {!isMobile && <Header logo={true} sidebar={false} />}
       <div className={styles.bottom}>
-        <a className='fs u-hovertxt' href='#' target='_blank' rel='noopener noreferrer'>
+        <a
+          className='fs u-hovertxt'
+          href='https://store.samaa.world/items/134461445'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           Read Our Story
         </a>
       </div>

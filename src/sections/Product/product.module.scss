@@ -20,7 +20,7 @@
 
   .carouselWrapper {
     display: flex;
-    gap: 40px;
+    gap: 0;
     will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -36,11 +36,17 @@
     flex-shrink: 0;
     cursor: pointer;
     user-select: none;
-    width: max(300px, 20.833vw);
+    width: max(360px, 25vw);
     height: auto;
     contain: layout style paint;
 
     h2 {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      z-index: 1;
+
+      white-space: pre-line;
       opacity: 0;
       margin-top: 10px;
       text-align: center;
@@ -54,7 +60,7 @@
       z-index: 1;
       overflow: hidden;
       background: var(--white-cl);
-      padding-bottom: calc(400 / 300 * 100%);
+      padding-bottom: calc(480 / 360 * 100%);
 
       img {
         position: absolute;
@@ -83,7 +89,7 @@
     }
 
     @include maxW {
-      width: max(210px, 50.725vw);
+      // width: max(210px, 50.725vw);
 
       h2 {
         display: none;
