@@ -20,7 +20,7 @@ const Intro: React.FC = () => {
   }, [])
 
   return (
-    <section className={styles.container}>
+    <section className={styles.container} data-intro>
       {!isMobile && <Header logo={false} sidebar={true} color='var(--white-cl)' />}
       <div className={`${styles.desc} fs`}>
         <p>

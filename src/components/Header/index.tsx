@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import styles from './header.module.scss'
 
 interface HeaderProps {
@@ -7,6 +8,42 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ logo = false, sidebar = true, color }) => {
+  const sidebarRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!sidebar || !sidebarRef.current) return
+    const introSections = document.querySelectorAll('[data-intro]')
+    if (introSections.length === 0) return
+
+    const pTags = sidebarRef.current.querySelectorAll('p')
+    const checkIntersection = () => {
+      pTags.forEach((pTag) => {
+        const pRect = pTag.getBoundingClientRect()
+        let isOverlapping = false
+
+        introSections.forEach((intro) => {
+          const introRect = intro.getBoundingClientRect()
+          if (pRect.top < introRect.bottom && pRect.bottom > introRect.top) {
+            isOverlapping = true
+          }
+        })
+        pTag.classList.toggle('white-text', isOverlapping)
+      })
+    }
+
+    // Check each frame for a smooth transition
+    let animationFrameId: number
+    const animate = () => {
+      checkIntersection()
+      animationFrameId = requestAnimationFrame(animate)
+    }
+    animationFrameId = requestAnimationFrame(animate)
+
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [sidebar])
+
   return (
     <div className={styles.container}>
       {logo && (
@@ -120,7 +157,7 @@ const Header: React.FC<HeaderProps> = ({ logo = false, sidebar = true, color }) 
         </div>
       )}
       {sidebar && (
-        <div className={styles.sidebar} style={{ color: color }}>
+        <div ref={sidebarRef} className={styles.sidebar} style={{ color: color }}>
           <p>さまあ</p>
           <p>美しい未来</p>
         </div>

@@ -24,13 +24,17 @@
       position: fixed;
       top: 24px;
       right: 22px;
-
       gap: 48px;
 
       p {
         font-size: 1.1rem;
         line-height: 2;
         letter-spacing: 2.5px;
+        transition: color 0.3s ease;
+
+        &:global(.white-text) {
+          color: var(--white-cl) !important;
+        }
       }
     }
   }
