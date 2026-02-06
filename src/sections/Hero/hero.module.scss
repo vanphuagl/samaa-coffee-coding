@@ -57,6 +57,13 @@
     .address {
       // margin-left: 4px;
       margin-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      a {
+        width: fit-content;
+      }
     }
 
     @include maxW {
@@ -70,6 +77,7 @@
 
       .address {
         // margin-left: 1px;
+        gap: 8px
       }
     }
   }

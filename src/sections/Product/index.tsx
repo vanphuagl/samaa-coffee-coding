@@ -188,7 +188,7 @@ const Product: React.FC = () => {
 
       <div className={styles.bottom}>
         <a className='fs u-hovertxt' href='https://store.samaa.world' target='_blank' rel='noopener noreferrer'>
-          Available Here
+          Available Here →
         </a>
       </div>
     </section>

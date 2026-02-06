@@ -25,7 +25,7 @@ const Story: React.FC = () => {
           target='_blank'
           rel='noopener noreferrer'
         >
-          Read Our Story
+          Read Our Story →
         </a>
       </div>
     </section>

@@ -38,7 +38,13 @@ const Hero: React.FC = () => {
           <p>♻️</p>
         </div>
         <div className={`${styles.address} fs`}>
-          <p>Open daily 9am-10pm</p>
+          <p>
+            Open daily 9am-10pm
+            <br />
+            1-33-7 Kamiuma, Setagaya,
+            <br />
+            Tokyo 1540011 Japan
+          </p>
           <a
             className='u-hovertxt'
             href='https://maps.app.goo.gl/sfEYNpeuPDRX4Mhg9'
@@ -46,8 +52,7 @@ const Hero: React.FC = () => {
             rel='noopener noreferrer'
             onClick={(e) => e.stopPropagation()}
           >
-            1-33-7 Kamiuma, Setagaya,
-            <br /> Tokyo 1540011 Japan
+            Google Map →
           </a>
         </div>
       </div>
